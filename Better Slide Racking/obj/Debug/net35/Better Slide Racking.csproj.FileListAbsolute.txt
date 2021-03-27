@@ -1,0 +1,30 @@
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Better Slide Racking.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Better Slide Racking.pdb
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\0Harmony.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Mono.Cecil.Mdb.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Mono.Cecil.Pdb.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Mono.Cecil.Rocks.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Mono.Cecil.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\MonoMod.RuntimeDetour.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\MonoMod.Utils.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Assembly-CSharp.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\BepInEx.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Deli.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Deli.Runtime.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\UnityEngine.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\UnityEngine.VR.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\UnityEngine.UI.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\DinoFracture.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Assembly-CSharp-firstpass.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\ES2.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\Valve.Newtonsoft.Json.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\ADepIn.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\DotNetZip.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\MoodkieSecurity.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\bin\Debug\net35\BepInEx.xml
+C:\GitFiles\Bullet-Grab\Better Slide Racking\obj\Debug\net35\Better Slide Racking.csprojAssemblyReference.cache
+C:\GitFiles\Bullet-Grab\Better Slide Racking\obj\Debug\net35\Better Slide Racking.AssemblyInfoInputs.cache
+C:\GitFiles\Bullet-Grab\Better Slide Racking\obj\Debug\net35\Better Slide Racking.AssemblyInfo.cs
+C:\GitFiles\Bullet-Grab\Better Slide Racking\obj\Debug\net35\Better Slide Racking.csproj.CopyComplete
+C:\GitFiles\Bullet-Grab\Better Slide Racking\obj\Debug\net35\Better Slide Racking.dll
+C:\GitFiles\Bullet-Grab\Better Slide Racking\obj\Debug\net35\Better Slide Racking.pdb

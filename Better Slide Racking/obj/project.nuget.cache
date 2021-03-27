@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "urm8MlxQB67fYBRlgfkXYA9EdxFnCjMLJ6AnNKLl1Oq8PpQIB9YJadXmp64o94GuQihUH5W3y3Gw7Ik5On+KCw==",
+  "success": true,
+  "projectFilePath": "C:\\GitFiles\\Bullet-Grab\\Better Slide Racking\\Better Slide Racking.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\finla\\.nuget\\packages\\harmonyx\\2.4.0\\harmonyx.2.4.0.nupkg.sha512",
+    "C:\\Users\\finla\\.nuget\\packages\\mono.cecil\\0.10.4\\mono.cecil.0.10.4.nupkg.sha512",
+    "C:\\Users\\finla\\.nuget\\packages\\monomod.runtimedetour\\21.1.11.1\\monomod.runtimedetour.21.1.11.1.nupkg.sha512",
+    "C:\\Users\\finla\\.nuget\\packages\\monomod.utils\\21.1.11.1\\monomod.utils.21.1.11.1.nupkg.sha512"
+  ],
+  "logs": []
+}

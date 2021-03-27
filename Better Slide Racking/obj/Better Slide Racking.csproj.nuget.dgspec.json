@@ -1,0 +1,51 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\GitFiles\\Bullet-Grab\\Better Slide Racking\\Better Slide Racking.csproj": {}
+  },
+  "projects": {
+    "C:\\GitFiles\\Bullet-Grab\\Better Slide Racking\\Better Slide Racking.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitFiles\\Bullet-Grab\\Better Slide Racking\\Better Slide Racking.csproj",
+        "projectName": "Better Slide Racking",
+        "projectPath": "C:\\GitFiles\\Bullet-Grab\\Better Slide Racking\\Better Slide Racking.csproj",
+        "packagesPath": "C:\\Users\\finla\\.nuget\\packages\\",
+        "outputPath": "C:\\GitFiles\\Bullet-Grab\\Better Slide Racking\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\finla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net35"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net35": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net35": {
+          "dependencies": {
+            "HarmonyX": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
