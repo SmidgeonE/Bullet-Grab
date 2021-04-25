@@ -1,0 +1,370 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v3.5": {
+      "BepInEx.BaseLib/5.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/net35/BepInEx.dll": {}
+        },
+        "runtime": {
+          "lib/net35/BepInEx.dll": {}
+        }
+      },
+      "BepInEx.Core/5.4.0": {
+        "type": "package",
+        "dependencies": {
+          "BepInEx.BaseLib": "5.4.0",
+          "HarmonyX": "2.1.1"
+        },
+        "compile": {
+          "lib/net35/_._": {}
+        },
+        "runtime": {
+          "lib/net35/_._": {}
+        },
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "Deli/0.3.2": {
+        "type": "package",
+        "dependencies": {
+          "BepInEx.Core": "5.4.0",
+          "Deli.Patcher": "0.3.2",
+          "UnityEngine.Core": "5.6.0"
+        },
+        "compile": {
+          "lib/net35/Deli.Setup.dll": {}
+        },
+        "runtime": {
+          "lib/net35/Deli.Setup.dll": {}
+        }
+      },
+      "Deli.Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net35/Deli.Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net35/Deli.Newtonsoft.Json.dll": {}
+        }
+      },
+      "Deli.Patcher/0.3.2": {
+        "type": "package",
+        "dependencies": {
+          "BepInEx.Core": "5.4.0",
+          "Deli.Newtonsoft.Json": "12.0.3",
+          "DotNetZip": "1.12.0"
+        },
+        "compile": {
+          "lib/net35/Deli.Patcher.dll": {}
+        },
+        "runtime": {
+          "lib/net35/Deli.Patcher.dll": {}
+        }
+      },
+      "DotNetZip/1.12.0": {
+        "type": "package",
+        "compile": {
+          "lib/net20/DotNetZip.dll": {}
+        },
+        "runtime": {
+          "lib/net20/DotNetZip.dll": {}
+        }
+      },
+      "HarmonyX/2.4.1": {
+        "type": "package",
+        "dependencies": {
+          "MonoMod.RuntimeDetour": "21.4.2.3"
+        },
+        "compile": {
+          "lib/net35/0Harmony.dll": {}
+        },
+        "runtime": {
+          "lib/net35/0Harmony.dll": {}
+        }
+      },
+      "Mono.Cecil/0.10.4": {
+        "type": "package",
+        "compile": {
+          "lib/net35/Mono.Cecil.Mdb.dll": {},
+          "lib/net35/Mono.Cecil.Pdb.dll": {},
+          "lib/net35/Mono.Cecil.Rocks.dll": {},
+          "lib/net35/Mono.Cecil.dll": {}
+        },
+        "runtime": {
+          "lib/net35/Mono.Cecil.Mdb.dll": {},
+          "lib/net35/Mono.Cecil.Pdb.dll": {},
+          "lib/net35/Mono.Cecil.Rocks.dll": {},
+          "lib/net35/Mono.Cecil.dll": {}
+        }
+      },
+      "MonoMod.RuntimeDetour/21.4.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Mono.Cecil": "0.10.4",
+          "MonoMod.Utils": "21.4.2.3"
+        },
+        "frameworkAssemblies": [
+          "System"
+        ],
+        "compile": {
+          "lib/net35/MonoMod.RuntimeDetour.dll": {}
+        },
+        "runtime": {
+          "lib/net35/MonoMod.RuntimeDetour.dll": {}
+        }
+      },
+      "MonoMod.Utils/21.4.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Mono.Cecil": "0.10.4"
+        },
+        "frameworkAssemblies": [
+          "System"
+        ],
+        "compile": {
+          "lib/net35/MonoMod.Utils.dll": {}
+        },
+        "runtime": {
+          "lib/net35/MonoMod.Utils.dll": {}
+        }
+      },
+      "UnityEngine.Core/5.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/net35/UnityEngine.dll": {}
+        },
+        "runtime": {
+          "lib/net35/UnityEngine.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BepInEx.BaseLib/5.4.0": {
+      "sha512": "72Crib6u0lIfrSj98kXKJbRHq7CpElk9VFipGBgkQBFmlRThT07YC1rjLBgRgM/2D+EazPW5nl4ThdILQ/u/bw==",
+      "type": "package",
+      "path": "bepinex.baselib/5.4.0",
+      "files": [
+        ".nupkg.metadata",
+        "bepinex.baselib.5.4.0.nupkg.sha512",
+        "bepinex.baselib.nuspec",
+        "images/icon.png",
+        "lib/net35/BepInEx.dll"
+      ]
+    },
+    "BepInEx.Core/5.4.0": {
+      "sha512": "W9OSbVDk3p5A7mUmZf9f4t/lzl9BEgNe8EjiWKEFlZIdip3u1jtcmdN7xu/X73F9sRqxDn6TG9b1vYEdSYScNw==",
+      "type": "package",
+      "path": "bepinex.core/5.4.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        "bepinex.core.5.4.0.nupkg.sha512",
+        "bepinex.core.nuspec",
+        "build/BepInEx.Core.targets",
+        "images/icon.png",
+        "lib/net35/_._",
+        "tools/Install.ps1"
+      ]
+    },
+    "Deli/0.3.2": {
+      "sha512": "5X1ZgCXK732MZ5EoANfJ30io+y263frozOnOEMS0De1LfiWa/KlFzTmWfqjqrJAEN4IceM7vVfrHyAlPSZstMw==",
+      "type": "package",
+      "path": "deli/0.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "deli.0.3.2.nupkg.sha512",
+        "deli.nuspec",
+        "lib/net35/Deli.Setup.dll",
+        "lib/net35/Deli.Setup.xml"
+      ]
+    },
+    "Deli.Newtonsoft.Json/12.0.3": {
+      "sha512": "L0hrHr06a3D9bd8+Cpi5pp/hwaZpvPuir318CapiKMw0NYrIM+XD23Z1hgIE3/wWHgPCzBgYFqylfmuWkzxi6A==",
+      "type": "package",
+      "path": "deli.newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "deli.newtonsoft.json.12.0.3.nupkg.sha512",
+        "deli.newtonsoft.json.nuspec",
+        "lib/net35/Deli.Newtonsoft.Json.dll",
+        "lib/net35/Deli.Newtonsoft.Json.xml"
+      ]
+    },
+    "Deli.Patcher/0.3.2": {
+      "sha512": "LXn53bZErvjBbnmQVxo/9VuXQCpX9Vl3wowuz0Bid3Em7l5xrP2pPl6SsawU7PA0SJ1HRRjGnhrGHku1WnuG9Q==",
+      "type": "package",
+      "path": "deli.patcher/0.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "deli.patcher.0.3.2.nupkg.sha512",
+        "deli.patcher.nuspec",
+        "lib/net35/Deli.Patcher.dll",
+        "lib/net35/Deli.Patcher.xml"
+      ]
+    },
+    "DotNetZip/1.12.0": {
+      "sha512": "/wigRpbMEesE85pnKkFnolmb8e1tRm2mp4eNxowI22tiN0RDZekQgtcAvmK0KsSF1Xta2czICztMMpnMu7ir7w==",
+      "type": "package",
+      "path": "dotnetzip/1.12.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dotnetzip.1.12.0.nupkg.sha512",
+        "dotnetzip.nuspec",
+        "lib/net20/DotNetZip.dll",
+        "lib/net20/DotNetZip.xml"
+      ]
+    },
+    "HarmonyX/2.4.1": {
+      "sha512": "NjbDeZOelgQYAz2829E8dCtIttRXUUnfXcyIu3qY7SUbfA5Y7zO7jxvdhBfApmpqxXEOOS3jF6N/ON2kl71UGg==",
+      "type": "package",
+      "path": "harmonyx/2.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "harmonyx.2.4.1.nupkg.sha512",
+        "harmonyx.nuspec",
+        "lib/net35/0Harmony.dll",
+        "lib/net35/0Harmony.xml",
+        "lib/net45/0Harmony.dll",
+        "lib/net45/0Harmony.xml",
+        "lib/netstandard2.0/0Harmony.dll",
+        "lib/netstandard2.0/0Harmony.xml",
+        "logo_mini.png"
+      ]
+    },
+    "Mono.Cecil/0.10.4": {
+      "sha512": "BHukPf7zfXu+akTcFEAWvU4x3hVMMIDC+ihGAl/+8OozrY0f/ajrpuaSUf2Q3Xvgsge5NryvOkjtyhV5TNXoSg==",
+      "type": "package",
+      "path": "mono.cecil/0.10.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/Mono.Cecil.Mdb.dll",
+        "lib/net35/Mono.Cecil.Pdb.dll",
+        "lib/net35/Mono.Cecil.Rocks.dll",
+        "lib/net35/Mono.Cecil.dll",
+        "lib/net40/Mono.Cecil.Mdb.dll",
+        "lib/net40/Mono.Cecil.Pdb.dll",
+        "lib/net40/Mono.Cecil.Rocks.dll",
+        "lib/net40/Mono.Cecil.dll",
+        "lib/netstandard1.3/Mono.Cecil.Mdb.dll",
+        "lib/netstandard1.3/Mono.Cecil.Pdb.dll",
+        "lib/netstandard1.3/Mono.Cecil.Rocks.dll",
+        "lib/netstandard1.3/Mono.Cecil.dll",
+        "mono.cecil.0.10.4.nupkg.sha512",
+        "mono.cecil.nuspec"
+      ]
+    },
+    "MonoMod.RuntimeDetour/21.4.2.3": {
+      "sha512": "biHS0ZBesFA2BXCFnQWlfKepeHbHKF+u6h7/xjaw8Fbat7qO7HaspQp/lPpuxD8MZqj4x+gZKUjadkJjLM3r1Q==",
+      "type": "package",
+      "path": "monomod.runtimedetour/21.4.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/MonoMod.RuntimeDetour.dll",
+        "lib/net35/MonoMod.RuntimeDetour.xml",
+        "lib/net40/MonoMod.RuntimeDetour.dll",
+        "lib/net40/MonoMod.RuntimeDetour.xml",
+        "lib/netstandard2.0/MonoMod.RuntimeDetour.dll",
+        "lib/netstandard2.0/MonoMod.RuntimeDetour.xml",
+        "monomod.runtimedetour.21.4.2.3.nupkg.sha512",
+        "monomod.runtimedetour.nuspec"
+      ]
+    },
+    "MonoMod.Utils/21.4.2.3": {
+      "sha512": "oqpvwpfTyNgebTzXmgzWoT2gvaAEb1Q5kvb3afW0aRQn8Uf5Mx+G2oCqaTukfm4F4Yqgnzcr6Cd1wbGvai0e8Q==",
+      "type": "package",
+      "path": "monomod.utils/21.4.2.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/MonoMod.Utils.dll",
+        "lib/net35/MonoMod.Utils.xml",
+        "lib/net40/MonoMod.Utils.dll",
+        "lib/net40/MonoMod.Utils.xml",
+        "lib/netstandard2.0/MonoMod.Utils.dll",
+        "lib/netstandard2.0/MonoMod.Utils.xml",
+        "monomod.utils.21.4.2.3.nupkg.sha512",
+        "monomod.utils.nuspec"
+      ]
+    },
+    "UnityEngine.Core/5.6.0": {
+      "sha512": "MtNf4ET+CRPe/dv4PNbWX/jj/nb9gD1FBHvM+hhh5uLr4rMuVAHRkap8SFUlueZbeTloOJe7JEW8az4XQGZn5Q==",
+      "type": "package",
+      "path": "unityengine.core/5.6.0",
+      "files": [
+        ".nupkg.metadata",
+        "lib/net35/UnityEngine.dll",
+        "unityengine.core.5.6.0.nupkg.sha512",
+        "unityengine.core.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v3.5": [
+      "Deli >= 0.3.2",
+      "HarmonyX >= 2.4.1"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\finla\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\GitFiles\\Bullet-Grab\\BulletGrab\\BulletGrab\\BulletGrab.csproj",
+      "projectName": "BulletGrab",
+      "projectPath": "C:\\GitFiles\\Bullet-Grab\\BulletGrab\\BulletGrab\\BulletGrab.csproj",
+      "packagesPath": "C:\\Users\\finla\\.nuget\\packages\\",
+      "outputPath": "C:\\GitFiles\\Bullet-Grab\\BulletGrab\\BulletGrab\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\finla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net35"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net35": {
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net35": {
+        "dependencies": {
+          "Deli": {
+            "target": "Package",
+            "version": "[0.3.2, )"
+          },
+          "HarmonyX": {
+            "target": "Package",
+            "version": "[2.4.1, )"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

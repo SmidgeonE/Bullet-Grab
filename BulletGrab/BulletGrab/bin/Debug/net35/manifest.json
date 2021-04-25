@@ -1,0 +1,13 @@
+{
+  "guid": "bulletgrabmod",
+  "version": "1.0.0",
+  "require": "0.3.0",
+  "name": "BulletGrab",
+  "description": "Yes",
+  "authors": [ "Smidgeon" ],
+  "assets": {
+    "setup": {
+      "BulletGrab.dll": "deli:assembly"
+    }
+  }
+}
