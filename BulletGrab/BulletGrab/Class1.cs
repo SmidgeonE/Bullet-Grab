@@ -1,5 +1,7 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections;
+using System.Threading;
 using Deli.Setup;
 using FistVR;
 using HarmonyLib;
@@ -14,8 +16,6 @@ namespace BulletGrab
 
         private void Awake()
         {
-            Debug.Log("Bullet Grab Mod works!");
-
             Harmony.CreateAndPatchAll(typeof(BulletGrabMod));
         }
 
@@ -23,24 +23,12 @@ namespace BulletGrab
         [HarmonyPostfix]
         private static void EjectRoundPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
-            if (__result == null)
-            {
-                Debug.Log("round is null");
-                return;
-            }
+            if (__result == null) return;
 
             _hands = GM.CurrentMovementManager.Hands;
             var weapon = __instance.Firearm;
             
-            if (weapon is Handgun)
-            {
-                Debug.Log("This weapon is a handgun");
-                HandgunMethod(__result);
-            }
-            else
-            {
-                Debug.Log("Weapon is not handgun");
-            }
+            if (weapon is Handgun) HandgunMethod(__result);
             
             Debug.Log("Ejected Round");
         }
@@ -49,29 +37,29 @@ namespace BulletGrab
         {
             if (_hands[0].CurrentInteractable is HandgunSlide handgunSlideLeftHand)
             {
-                Debug.Log("Left hand is holding handgun slide");
+                if (!HandIsGrabbingBullet(_hands[0])) return;
+                
                 handgunSlideLeftHand.ForceBreakInteraction();
                 _hands[0].RetrieveObject(round);
             }
             else if (_hands[1].CurrentInteractable is HandgunSlide handgunSlideRightHand)
             {
-                Debug.Log("Right hand is holding handugn slide");
+                if (!HandIsGrabbingBullet(_hands[1])) return;
+                
                 handgunSlideRightHand.ForceBreakInteraction();
                 _hands[1].RetrieveObject(round);
             }
-            else
-            {
-                Debug.Log("No hand is holding the slide.");
-            }
         }
 
+        private static bool HandIsGrabbingBullet(FVRViveHand hand)
+        {
+            if (_controlMode == ControlOptions.CoreControlMode.Standard)
+                return hand.Input.GripPressed && hand.Input.TriggerPressed;
 
+            return hand.Input.BYButtonPressed;
+        }
 
-
-
-
-
-
+        
 
 
         /* These patches get the current control mode */
