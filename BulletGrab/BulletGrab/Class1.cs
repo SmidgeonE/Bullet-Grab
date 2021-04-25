@@ -28,28 +28,64 @@ namespace BulletGrab
             _hands = GM.CurrentMovementManager.Hands;
             var weapon = __instance.Firearm;
             
-            if (weapon is Handgun) HandgunMethod(__result);
+            switch (weapon)
+            {
+                case Handgun handgun:
+                    HandgunMethod(__result, handgun);
+                    break;
+                
+                case BoltActionRifle boltAction:
+                    BoltActionMethod(__result, boltAction);
+                    break;
+            }
             
             Debug.Log("Ejected Round");
         }
 
-        private static void HandgunMethod(FVRFireArmRound round)
+        private static void HandgunMethod(FVRFireArmRound round, Handgun handgun)
         {
-            if (_hands[0].CurrentInteractable is HandgunSlide handgunSlideLeftHand)
+            if (handgun == null)
             {
-                if (!HandIsGrabbingBullet(_hands[0])) return;
-                
-                handgunSlideLeftHand.ForceBreakInteraction();
-                _hands[0].RetrieveObject(round);
+                Debug.Log("handgun is null");
+                return;
             }
-            else if (_hands[1].CurrentInteractable is HandgunSlide handgunSlideRightHand)
+            
+            var handHoldingSlide = handgun.Slide.m_hand;
+
+            if (handHoldingSlide == null)
             {
-                if (!HandIsGrabbingBullet(_hands[1])) return;
-                
-                handgunSlideRightHand.ForceBreakInteraction();
-                _hands[1].RetrieveObject(round);
+                Debug.Log("No hand is holding the slide");
+                return;
             }
+            
+            Debug.Log("It got here");
+            
+            if (!HandIsGrabbingBullet(handHoldingSlide)) return;
+                
+            handgun.Slide.ForceBreakInteraction();
+            handHoldingSlide.RetrieveObject(round);
         }
+        
+        private static void BoltActionMethod(FVRFireArmRound round, BoltActionRifle boltAction)
+        {
+            var handHoldingBolt = boltAction.BoltHandle.m_hand;
+
+            if (handHoldingBolt)
+            {
+                Debug.Log("No hand is holding the bolt");
+                return;
+            }
+            
+            if (!HandIsGrabbingBullet(handHoldingBolt)) return;
+            
+            Debug.Log("2");
+            
+            boltAction.BoltHandle.ForceBreakInteraction();
+            handHoldingBolt.RetrieveObject(round);
+        }
+        
+        
+        
 
         private static bool HandIsGrabbingBullet(FVRViveHand hand)
         {
@@ -59,7 +95,8 @@ namespace BulletGrab
             return hand.Input.BYButtonPressed;
         }
 
-        
+
+
 
 
         /* These patches get the current control mode */
