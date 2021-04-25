@@ -10,6 +10,7 @@ namespace BulletGrab
     public class BulletGrabMod : DeliBehaviour
     {
         private static ControlOptions.CoreControlMode _controlMode;
+        private static FVRViveHand[] _hands;
 
         private void Awake()
         {
@@ -20,77 +21,58 @@ namespace BulletGrab
 
         [HarmonyPatch(typeof(FVRFireArmChamber), "EjectRound")]
         [HarmonyPostfix]
-        private static void EjectRoundPatch(FVRFireArmRound __result)
+        private static void EjectRoundPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
             if (__result == null)
             {
                 Debug.Log("round is null");
                 return;
             }
+
+            _hands = GM.CurrentMovementManager.Hands;
+            var weapon = __instance.Firearm;
             
-            Debug.Log("Ejected Round");
-
-            CheckIfPlayerIsGrabbing(__result);
-        }
-
-        private static void CheckIfPlayerIsGrabbing(FVRFireArmRound round)
-        {
-            var roundPosition = round.transform.position;
-            var hands = GM.CurrentMovementManager.Hands;
-            var leftHandDistance = (hands[0].transform.position - roundPosition).sqrMagnitude;
-            var rightHandDistance =  (hands[1].transform.position - roundPosition).sqrMagnitude;
-
-            var leftHandIsGrabbing = false;
-            var rightHandIsGrabbing = false;
-            var closestHand = hands[0];
-
-            Debug.Log("Length of hands : " + hands.Length);
-            
-            if (hands[0].Input.GripPressed && hands[0].Input.TouchpadNorthPressed && hands[0].Input.TouchpadPressed)
+            if (weapon is Handgun)
             {
-                Debug.Log("Left is grabbing");
-                leftHandIsGrabbing = true;
-            }
-
-            if (hands[1].Input.GripPressed && hands[1].Input.TouchpadNorthPressed && hands[1].Input.TouchpadPressed)
-            {
-                Debug.Log("Right is grabbing");
-                rightHandIsGrabbing = true;
-                closestHand = hands[1];
-            }
-
-            if (closestHand.CurrentInteractable != null)
-            {
-                Debug.Log("Object already in main hand");
-                closestHand = closestHand.OtherHand;
-            }
-
-            if (closestHand.CurrentInteractable != null)
-            {
-                Debug.Log("Other hand is already holding something");
-                Debug.Log("Leaving method");
-                return;
-            }
-
-            Debug.Log(leftHandDistance >= rightHandDistance
-                ? "Right hand is closer to bullet"
-                : "Left hand is closer to bullet");
-
-            if (leftHandIsGrabbing && closestHand == hands[0])
-            {
-                Debug.Log("Sending bullet to left hand");
-                round.BeginInteraction(closestHand);
-            }
-            else if (rightHandIsGrabbing && closestHand == hands[1])
-            {
-                Debug.Log("Sending bullet to left hand");
-                round.BeginInteraction(closestHand);
+                Debug.Log("This weapon is a handgun");
+                HandgunMethod(__result);
             }
             else
             {
-                Debug.Log("No available hand");
+                Debug.Log("Weapon is not handgun");
+            }
+            
+            Debug.Log("Ejected Round");
+        }
+
+        private static void HandgunMethod(FVRFireArmRound round)
+        {
+            if (_hands[0].CurrentInteractable is HandgunSlide handgunSlideLeftHand)
+            {
+                Debug.Log("Left hand is holding handgun slide");
+                handgunSlideLeftHand.ForceBreakInteraction();
+                _hands[0].RetrieveObject(round);
+            }
+            else if (_hands[1].CurrentInteractable is HandgunSlide handgunSlideRightHand)
+            {
+                Debug.Log("Right hand is holding handugn slide");
+                handgunSlideRightHand.ForceBreakInteraction();
+                _hands[1].RetrieveObject(round);
+            }
+            else
+            {
+                Debug.Log("No hand is holding the slide.");
             }
         }
+
+
+
+
+
+
+
+
+
 
         /* These patches get the current control mode */
         [HarmonyPatch(typeof(GameOptions), "InitializeFromSaveFile")]
