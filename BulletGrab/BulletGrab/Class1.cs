@@ -44,22 +44,9 @@ namespace BulletGrab
 
         private static void HandgunMethod(FVRFireArmRound round, Handgun handgun)
         {
-            if (handgun == null)
-            {
-                Debug.Log("handgun is null");
-                return;
-            }
-            
             var handHoldingSlide = handgun.Slide.m_hand;
 
-            if (handHoldingSlide == null)
-            {
-                Debug.Log("No hand is holding the slide");
-                return;
-            }
-            
-            Debug.Log("It got here");
-            
+            if (handHoldingSlide == null) return;
             if (!HandIsGrabbingBullet(handHoldingSlide)) return;
                 
             handgun.Slide.ForceBreakInteraction();
@@ -70,23 +57,13 @@ namespace BulletGrab
         {
             var handHoldingBolt = boltAction.BoltHandle.m_hand;
 
-            if (handHoldingBolt)
-            {
-                Debug.Log("No hand is holding the bolt");
-                return;
-            }
-            
+            if (handHoldingBolt) return;
             if (!HandIsGrabbingBullet(handHoldingBolt)) return;
-            
-            Debug.Log("2");
-            
+
             boltAction.BoltHandle.ForceBreakInteraction();
             handHoldingBolt.RetrieveObject(round);
         }
         
-        
-        
-
         private static bool HandIsGrabbingBullet(FVRViveHand hand)
         {
             if (_controlMode == ControlOptions.CoreControlMode.Standard)
@@ -94,11 +71,7 @@ namespace BulletGrab
 
             return hand.Input.BYButtonPressed;
         }
-
-
-
-
-
+        
         /* These patches get the current control mode */
         [HarmonyPatch(typeof(GameOptions), "InitializeFromSaveFile")]
         [HarmonyPrefix]
