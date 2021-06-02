@@ -27,3 +27,8 @@ C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\obj\Debug\net35\BulletGrab.Assembl
 C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\obj\Debug\net35\BulletGrab.csproj.CopyComplete
 C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\obj\Debug\net35\BulletGrab.dll
 C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\obj\Debug\net35\BulletGrab.pdb
+C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\bin\Debug\net35\BetterHands.dll
+C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\bin\Debug\net35\MMHOOK_Assembly-CSharp.dll
+C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\bin\Debug\net35\Deli.H3VR.dll
+C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\bin\Debug\net35\Deli.H3VR.Patcher.dll
+C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\bin\Debug\net35\BetterHands.pdb
