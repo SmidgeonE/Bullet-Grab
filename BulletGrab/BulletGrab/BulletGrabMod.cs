@@ -20,116 +20,87 @@ namespace BulletGrab
         [HarmonyPostfix]
         private static void EjectRoundPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
-            if (__result == null) return;
-            
             var weapon = __instance.Firearm;
-            
+            _quickBeltSlots = TryGetMagPalmSlots(GM.CurrentPlayerBody.RightHand.GetComponent<FVRViveHand>());
+
+            if (_quickBeltSlots[0] == null || _quickBeltSlots[1] == null) return;
+
             switch (weapon)
             {
                 case Handgun handgun:
-                    HandgunMethod(__result, handgun);
+                    var handHoldingSlide = handgun.Slide.m_hand;
+
+                    if (handHoldingSlide == null) return;
+                    if (!PlayerIsPressingDown(handHoldingSlide)) return;
+
+                    PlaceBulletInHand(__result, handHoldingSlide);
                     break;
-                
+
                 case BoltActionRifle boltAction:
-                    BoltActionMethod(__result, boltAction);
+                    var handHoldingBolt = boltAction.BoltHandle.m_hand;
+
+                    if (handHoldingBolt) return;
+                    if (!PlayerIsPressingDown(handHoldingBolt))
+                    {
+                        Debug.Log("Player is not pressing down on bolt");
+                        return;
+                    }
+
+                    PlaceBulletInHand(__result, handHoldingBolt);
+                    break;
+
+                default:
+                    Debug.Log("this type of weapon has not been implemented : " + __instance.Firearm.GetType());
                     break;
             }
-            
-            Debug.Log("Ejected Round");
+
+            Console.WriteLine("Ejected Round");
         }
 
-        private static void HandgunMethod(FVRPhysicalObject round, Handgun handgun)
+        private static void PlaceBulletInHand(FVRPhysicalObject round, FVRViveHand hand)
         {
-            var handHoldingSlide = handgun.Slide.m_hand;
+            Console.WriteLine("Placing bullet in hand");
+            var desiredQBSlot = hand.IsThisTheRightHand ? _quickBeltSlots[0] : _quickBeltSlots[1];
 
-            if (handHoldingSlide == null) return;
-            if (!PlayerIsPressingDown(handHoldingSlide)) return;
-            
-            Debug.Log("");
-            Debug.Log("all of this hands children : ");
-            
-            foreach (Transform child in handHoldingSlide.PoseOverride)
+            if (desiredQBSlot.CurObject != null)
             {
-                Debug.Log("");
-                Debug.Log(child.name);
-                Debug.Log("their children : ");
-                foreach (Transform subChildren in child)
-                {
-                    Debug.Log(subChildren.name);
-                    if (subChildren == GM.CurrentPlayerBody.Torso.Find("QuickBeltSlot_BackPack")) Debug.Log("!!!! THIS IS A QUICK BELT SLOT");
-                    if (subChildren.GetComponent<FVRQuickBeltSlot>() != null) Debug.Log("!!! THIS IS A QUICK BELT SLOT");
-                }
-                
-            }
-            
-
-            Debug.Log("Forcing object into slot");
-            // Add logic
-        }
-        
-        private static void BoltActionMethod(FVRPhysicalObject round, BoltActionRifle boltAction)
-        {
-            Debug.Log("Bolt action method");
-            var handHoldingBolt = boltAction.BoltHandle.m_hand;
-
-            if (handHoldingBolt) return;
-            if (!PlayerIsPressingDown(handHoldingBolt))
-            {
-                Debug.Log("Player is not pressing down on bolt");
+                Debug.Log("The current held object is not null, returning");
                 return;
             }
-            
-            Debug.Log("Forcing object into slot");
-            // Add logic
+
+            round.ForceObjectIntoInventorySlot(desiredQBSlot);
         }
-        
+
         private static bool PlayerIsPressingDown(FVRViveHand hand)
         {
             if (OptionsCollector.ControlMode == ControlOptions.CoreControlMode.Standard)
                 return hand.Input.GripPressed && hand.Input.TriggerPressed;
-            
+
             return hand.Input.BYButtonPressed;
         }
 
         private static FVRQuickBeltSlot[] TryGetMagPalmSlots(FVRViveHand hand)
         {
             var array = new FVRQuickBeltSlot[2];
-            
-            if (hand.IsThisTheRightHand)
-            {
-                var handSlot = hand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
-                if (handSlot != null)
-                {
-                    Debug.Log("Found right hand quick belt slot");
-                    array[0] = handSlot;
-                }
-                
-                var otherHandSlot = hand.OtherHand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
-                if (otherHandSlot != null)
-                {
-                    Debug.Log("found left hand quick belt slot");
-                    array[1] = handSlot;
-                }
+            FVRQuickBeltSlot currentHandSlot;
+            FVRQuickBeltSlot otherHandSlot;
+
+            if (hand.IsThisTheRightHand) {
+                currentHandSlot = hand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
+                if (currentHandSlot != null) array[0] = currentHandSlot;
+
+                otherHandSlot = hand.OtherHand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
+                if (otherHandSlot != null) array[1] = otherHandSlot;
             }
-            else
-            {
-                var handSlot = hand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
-                if (handSlot != null)
-                {
-                    Debug.Log("found left hand quick belt slot");
-                    array[1] = handSlot;
-                }
-                
-                var otherHandSlot = hand.OtherHand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
-                if (otherHandSlot != null)
-                {
-                    Debug.Log("Found right hand quick belt slot");
-                    array[0] = handSlot;
-                }
+            else {
+                currentHandSlot = hand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
+                if (currentHandSlot != null) array[1] = currentHandSlot;
+
+                otherHandSlot = hand.OtherHand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
+                if (otherHandSlot != null) array[0] = otherHandSlot;
             }
 
             return array;
         }
-        
     }
 }
