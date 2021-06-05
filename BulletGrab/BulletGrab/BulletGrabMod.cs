@@ -22,6 +22,8 @@ namespace BulletGrab
         private static void EjectRoundPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
             var weapon = __instance.Firearm;
+            FVRViveHand handDoingTheAction;
+            
             _quickBeltSlots = TryGetMagPalmSlots();
 
             if (_quickBeltSlots[0] == null || _quickBeltSlots[1] == null) return;
@@ -29,25 +31,21 @@ namespace BulletGrab
             switch (weapon)
             {
                 case Handgun handgun:
-                    var handHoldingSlide = handgun.Slide.m_hand;
-
-                    if (handHoldingSlide == null) return;
-                    if (!PlayerIsPressingDown(handHoldingSlide)) return;
-
-                    PlaceBulletInHand(__result, handHoldingSlide);
+                    handDoingTheAction = handgun.Slide.m_hand;
+                    
+                    PlaceBulletInHand(__result, handDoingTheAction);
                     break;
 
                 case BoltActionRifle boltAction:
-                    var handHoldingBolt = boltAction.BoltHandle.m_hand;
+                    handDoingTheAction = boltAction.BoltHandle.m_hand;
 
-                    if (handHoldingBolt) return;
-                    if (!PlayerIsPressingDown(handHoldingBolt))
-                    {
-                        Debug.Log("Player is not pressing down on bolt");
-                        return;
-                    }
-
-                    PlaceBulletInHand(__result, handHoldingBolt);
+                    PlaceBulletInHand(__result, handDoingTheAction);
+                    break;
+                
+                case ClosedBoltWeapon closedBolt:
+                    handDoingTheAction = closedBolt.Bolt.m_hand;
+                    
+                    PlaceBulletInHand(__result, handDoingTheAction);
                     break;
 
                 default:
@@ -60,6 +58,9 @@ namespace BulletGrab
 
         private static void PlaceBulletInHand(FVRFireArmRound round, FVRViveHand hand)
         {
+            if (hand == null) return;
+            if (!PlayerIsPressingDown(hand)) return;
+            
             var desiredQBSlot = hand.IsThisTheRightHand ? _quickBeltSlots[0] : _quickBeltSlots[1];
 
             if (desiredQBSlot.CurObject == null)
