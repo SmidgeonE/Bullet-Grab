@@ -3,6 +3,7 @@ using Deli.Setup;
 using FistVR;
 using HarmonyLib;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace BulletGrab
 {
@@ -21,7 +22,7 @@ namespace BulletGrab
         private static void EjectRoundPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
             var weapon = __instance.Firearm;
-            _quickBeltSlots = TryGetMagPalmSlots(GM.CurrentPlayerBody.RightHand.GetComponent<FVRViveHand>());
+            _quickBeltSlots = TryGetMagPalmSlots();
 
             if (_quickBeltSlots[0] == null || _quickBeltSlots[1] == null) return;
 
@@ -57,18 +58,33 @@ namespace BulletGrab
             Console.WriteLine("Ejected Round");
         }
 
-        private static void PlaceBulletInHand(FVRPhysicalObject round, FVRViveHand hand)
+        private static void PlaceBulletInHand(FVRFireArmRound round, FVRViveHand hand)
         {
-            Console.WriteLine("Placing bullet in hand");
             var desiredQBSlot = hand.IsThisTheRightHand ? _quickBeltSlots[0] : _quickBeltSlots[1];
 
-            if (desiredQBSlot.CurObject != null)
+            if (desiredQBSlot.CurObject == null)
             {
-                Debug.Log("The current held object is not null, returning");
+                round.ForceObjectIntoInventorySlot(desiredQBSlot);
+                SM.PlayHandlingReleaseIntoSlotSound(round.HandlingReleaseIntoSlotSound, round.transform.position);
                 return;
             }
+            
+            /* If there is something in the hand slot, it will try to group them if they are of the same
+                type of round*/
 
-            round.ForceObjectIntoInventorySlot(desiredQBSlot);
+            if (!(desiredQBSlot.CurObject is FVRFireArmRound palmedRound)) return;
+            
+            /* Take from FVRFireArmBullet.UpdateInteraction(); */
+            
+            if (palmedRound.RoundType == round.RoundType && palmedRound.ProxyRounds.Count < palmedRound.MaxPalmedAmount)
+            {
+                    Debug.Log("The bullets are the same type");
+                    
+                    palmedRound.AddProxy(round.RoundClass, round.ObjectWrapper);
+                    palmedRound.UpdateProxyDisplay();
+                    SM.PlayHandlingReleaseIntoSlotSound(round.HandlingReleaseIntoSlotSound, round.transform.position);
+                    Destroy(round.gameObject);
+            }
         }
 
         private static bool PlayerIsPressingDown(FVRViveHand hand)
@@ -79,8 +95,9 @@ namespace BulletGrab
             return hand.Input.BYButtonPressed;
         }
 
-        private static FVRQuickBeltSlot[] TryGetMagPalmSlots(FVRViveHand hand)
+        private static FVRQuickBeltSlot[] TryGetMagPalmSlots()
         {
+            var hand = GM.CurrentPlayerBody.RightHand.GetComponent<FVRViveHand>();
             var array = new FVRQuickBeltSlot[2];
             FVRQuickBeltSlot currentHandSlot;
             FVRQuickBeltSlot otherHandSlot;
