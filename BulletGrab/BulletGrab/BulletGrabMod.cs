@@ -1,21 +1,42 @@
 ﻿using System;
+using System.IO;
 using Deli.Setup;
 using FistVR;
 using HarmonyLib;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace BulletGrab
 {
     public class BulletGrabMod : DeliBehaviour
     {
-        private static FVRQuickBeltSlot[] _quickBeltSlots;
-
+        
         private void Awake()
         {
+            var dir = AppDomain.CurrentDomain.BaseDirectory + "\\Deli\\Mods\\BetterHands.deli";
+            Debug.Log("Current domain : " + dir);
+            if (!File.Exists(dir))
+            {
+                Debug.Log("Better hands mod doens't exist, exiting ...");
+                return;
+            }
+            
             Harmony.CreateAndPatchAll(typeof(BulletGrabMod));
             Harmony.CreateAndPatchAll(typeof(OptionsCollector));
+
+            On.FistVR.FVRFireArmChamber.EjectRound += Yes;
         }
+
+        private static FVRFireArmRound Yes(On.FistVR.FVRFireArmChamber.orig_EjectRound orig, 
+            FVRFireArmChamber self, 
+            Vector3 ejectionposition, 
+            Vector3 ejectionvelocity, 
+            Vector3 ejectionangularvelocity, 
+            bool forcecaselesseject)
+        {
+            Debug.Log("This is an event composition in Eject Round.");
+            return orig(self, ejectionposition, ejectionvelocity, ejectionangularvelocity, forcecaselesseject);
+        }
+        
 
         [HarmonyPatch(typeof(FVRFireArmChamber), "EjectRound")]
         [HarmonyPostfix]
@@ -24,10 +45,6 @@ namespace BulletGrab
             var weapon = __instance.Firearm;
             FVRViveHand handDoingTheAction;
             
-            _quickBeltSlots = TryGetMagPalmSlots();
-
-            if (_quickBeltSlots[0] == null || _quickBeltSlots[1] == null) return;
-
             switch (weapon)
             {
                 case Handgun handgun:
@@ -61,7 +78,9 @@ namespace BulletGrab
             if (hand == null) return;
             if (!PlayerIsPressingDown(hand)) return;
             
-            var desiredQBSlot = hand.IsThisTheRightHand ? _quickBeltSlots[0] : _quickBeltSlots[1];
+            var desiredQBSlot = hand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
+            
+            if (desiredQBSlot == null) return;
 
             if (desiredQBSlot.CurObject == null)
             {
@@ -94,31 +113,6 @@ namespace BulletGrab
                 return hand.Input.GripPressed && hand.Input.TriggerPressed;
 
             return hand.Input.BYButtonPressed;
-        }
-
-        private static FVRQuickBeltSlot[] TryGetMagPalmSlots()
-        {
-            var hand = GM.CurrentPlayerBody.RightHand.GetComponent<FVRViveHand>();
-            var array = new FVRQuickBeltSlot[2];
-            FVRQuickBeltSlot currentHandSlot;
-            FVRQuickBeltSlot otherHandSlot;
-
-            if (hand.IsThisTheRightHand) {
-                currentHandSlot = hand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
-                if (currentHandSlot != null) array[0] = currentHandSlot;
-
-                otherHandSlot = hand.OtherHand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
-                if (otherHandSlot != null) array[1] = otherHandSlot;
-            }
-            else {
-                currentHandSlot = hand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
-                if (currentHandSlot != null) array[1] = currentHandSlot;
-
-                otherHandSlot = hand.OtherHand.PoseOverride.GetComponentInChildren<FVRQuickBeltSlot>();
-                if (otherHandSlot != null) array[0] = otherHandSlot;
-            }
-
-            return array;
         }
     }
 }
