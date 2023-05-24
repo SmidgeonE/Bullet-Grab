@@ -10,6 +10,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>..\..\..\..\SteamLibrary\steamapps\common\H3VR\h3vr_Data\Managed\Assembly-CSharp.dll</HintPath>
+      </Reference>
       <Reference Include="Assembly-CSharp, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>S:\SteamLibrary\steamapps\common\H3VR\h3vr_Data\Managed\Assembly-CSharp.dll</HintPath>
       </Reference>
@@ -18,6 +21,9 @@
       </Reference>
       <Reference Include="MMHOOK_Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>..\..\..\TeleportWhenever\TeleportWhenever\TeleportWhenever\bin\Debug\net35\MMHOOK_Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>..\..\..\..\SteamLibrary\steamapps\common\H3VR\h3vr_Data\Managed\UnityEngine.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VR, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>S:\SteamLibrary\steamapps\common\H3VR\h3vr_Data\Managed\UnityEngine.VR.dll</HintPath>

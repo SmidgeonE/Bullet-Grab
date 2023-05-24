@@ -32,3 +32,5 @@ C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\bin\Debug\net35\MMHOOK_Assembly-CS
 C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\bin\Debug\net35\Deli.H3VR.dll
 C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\bin\Debug\net35\Deli.H3VR.Patcher.dll
 C:\GitFiles\Bullet-Grab\BulletGrab\BulletGrab\bin\Debug\net35\BetterHands.pdb
+D:\Git\Bullet-Grab\BulletGrab\BulletGrab\obj\Debug\net35\BulletGrab.dll
+D:\Git\Bullet-Grab\BulletGrab\BulletGrab\obj\Debug\net35\BulletGrab.pdb

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Deli.Setup;
 using FistVR;
 using HarmonyLib;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace BulletGrab
 {
@@ -25,7 +27,9 @@ namespace BulletGrab
         }
         
 
-        [HarmonyPatch(typeof(FVRFireArmChamber), "EjectRound")]
+        [HarmonyPatch(typeof(FVRFireArmChamber), 
+            "EjectRound", 
+            new Type[] {typeof(Vector3), typeof(Vector3), typeof(Vector3), typeof(bool)})]
         [HarmonyPostfix]
         private static void EjectRoundPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
