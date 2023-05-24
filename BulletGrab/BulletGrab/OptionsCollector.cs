@@ -14,7 +14,6 @@ namespace BulletGrab
         [HarmonyPrefix]
         private static void InitialOptionsGrabPatch(GameOptions __instance)
         {
-            Debug.Log("options collected");
             ControlMode = __instance.ControlOptions.CCM;
         }
                 

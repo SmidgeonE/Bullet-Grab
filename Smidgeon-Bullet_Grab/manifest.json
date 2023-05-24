@@ -1,0 +1,9 @@
+{
+	"name": "Bullet_Grab",
+	"version_number": "1.2.0",
+	"description": "Grab bullets",
+	"website_url": "https://github.com/SmidgeonE/Bullet-Grab",
+	"dependencies": [
+	"MaiqTheDude-BetterHands-1.8.1"
+]
+}

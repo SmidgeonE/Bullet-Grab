@@ -17,23 +17,18 @@ namespace BulletGrab
 
         private void Awake()
         {
-            Debug.Log("It works");
-
             Harmony.CreateAndPatchAll(typeof(BulletGrabMod));
             Harmony.CreateAndPatchAll(typeof(OptionsCollector));
-            Debug.Log("Mods Patched");
         }
 
         [HarmonyPatch(typeof(FVRFireArmChamber),
             "EjectRound",
             new Type[] { typeof(Vector3), typeof(Vector3), typeof(Vector3), typeof(Vector3), typeof(Quaternion), typeof(bool) })]
         [HarmonyPostfix]
-        private static void FakePatch()
+        private static void AnimationPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
-            Debug.Log("What the hell");
+            EjectRoundPatch(__result, __instance);
         }
-        
-
 
         [HarmonyPatch(typeof(FVRFireArmChamber), 
             "EjectRound", 
@@ -41,7 +36,6 @@ namespace BulletGrab
         [HarmonyPostfix]
         private static void EjectRoundPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
-            Debug.Log("Eject Round Patch Fired");
             if (__instance == null) return;
             
             var weapon = __instance.Firearm;
@@ -98,9 +92,7 @@ namespace BulletGrab
             
             if (palmedRound.RoundType == round.RoundType && palmedRound.ProxyRounds.Count < palmedRound.MaxPalmedAmount)
             {
-                    Debug.Log("The bullets are the same type");
-                    
-                    palmedRound.AddProxy(round.RoundClass, round.ObjectWrapper);
+                palmedRound.AddProxy(round.RoundClass, round.ObjectWrapper);
                     palmedRound.UpdateProxyDisplay();
                     SM.PlayHandlingReleaseIntoSlotSound(round.HandlingReleaseIntoSlotSound, round.transform.position);
                     Object.Destroy(round.gameObject);
