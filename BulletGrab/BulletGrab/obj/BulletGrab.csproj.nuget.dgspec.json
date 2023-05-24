@@ -38,13 +38,9 @@
         "net35": {
           "targetAlias": "net35",
           "dependencies": {
-            "Deli": {
-              "target": "Package",
-              "version": "[0.3.2, )"
-            },
             "HarmonyX": {
               "target": "Package",
-              "version": "[2.4.1, )"
+              "version": "[2.10.1, )"
             },
             "Microsoft.NETFramework.ReferenceAssemblies": {
               "suppressParent": "All",
@@ -53,7 +49,7 @@
               "autoReferenced": true
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\Finlay\\.dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

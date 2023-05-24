@@ -1,31 +1,39 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using Deli.Setup;
+using BepInEx;
 using FistVR;
 using HarmonyLib;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using Object = UnityEngine.Object;
 
 namespace BulletGrab
 {
-    public class BulletGrabMod : DeliBehaviour
+    [BepInPlugin("dll.smidgeon.bulletgrab", "Bullet Grab", "1.2.0")]
+    [BepInProcess("h3vr.exe")]
+    public class BulletGrabMod : BaseUnityPlugin
     {
 
         private void Awake()
         {
-            var dir = AppDomain.CurrentDomain.BaseDirectory + "\\Deli\\Mods\\BetterHands.deli";
-
-            if (!File.Exists(dir))
-            {
-                Debug.Log("Better hands mod doesn't exist, exiting ...");
-                return;
-            }
+            Debug.Log("It works");
 
             Harmony.CreateAndPatchAll(typeof(BulletGrabMod));
             Harmony.CreateAndPatchAll(typeof(OptionsCollector));
+            Debug.Log("Mods Patched");
+        }
+
+        [HarmonyPatch(typeof(FVRFireArmChamber),
+            "EjectRound",
+            new Type[] { typeof(Vector3), typeof(Vector3), typeof(Vector3), typeof(Vector3), typeof(Quaternion), typeof(bool) })]
+        [HarmonyPostfix]
+        private static void FakePatch()
+        {
+            Debug.Log("What the hell");
         }
         
+
 
         [HarmonyPatch(typeof(FVRFireArmChamber), 
             "EjectRound", 
@@ -33,6 +41,7 @@ namespace BulletGrab
         [HarmonyPostfix]
         private static void EjectRoundPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
+            Debug.Log("Eject Round Patch Fired");
             if (__instance == null) return;
             
             var weapon = __instance.Firearm;
@@ -94,7 +103,7 @@ namespace BulletGrab
                     palmedRound.AddProxy(round.RoundClass, round.ObjectWrapper);
                     palmedRound.UpdateProxyDisplay();
                     SM.PlayHandlingReleaseIntoSlotSound(round.HandlingReleaseIntoSlotSound, round.transform.position);
-                    Destroy(round.gameObject);
+                    Object.Destroy(round.gameObject);
             }
         }
 

@@ -1,50 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "opjRyqaX0oDopOHW52m98IXqGDe6ozwV3a5NpMFtX7YTe+5ULOSqKGJz+rWQ3aCNDBb/haMBxPWuRA+GklMdRQ==",
-  "success": false,
+  "dgSpecHash": "rKkVgbzgBu9b0qbzC9wQLiCEfu82SkPDMKJ8Wv9gG8euFOf5fP3nZW5b+zx3sVn+3fWPArWsZhRBALk5w4U+KQ==",
+  "success": true,
   "projectFilePath": "D:\\Git\\Bullet-Grab\\BulletGrab\\BulletGrab\\BulletGrab.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Finlay\\.nuget\\packages\\bepinex.baselib\\5.4.16\\bepinex.baselib.5.4.16.nupkg.sha512",
-    "C:\\Users\\Finlay\\.nuget\\packages\\bepinex.core\\5.4.16\\bepinex.core.5.4.16.nupkg.sha512",
-    "C:\\Users\\Finlay\\.nuget\\packages\\deli\\0.3.2\\deli.0.3.2.nupkg.sha512",
-    "C:\\Users\\Finlay\\.nuget\\packages\\deli.newtonsoft.json\\12.0.3\\deli.newtonsoft.json.12.0.3.nupkg.sha512",
-    "C:\\Users\\Finlay\\.nuget\\packages\\deli.patcher\\0.3.2\\deli.patcher.0.3.2.nupkg.sha512",
-    "C:\\Users\\Finlay\\.nuget\\packages\\dotnetzip\\1.12.0\\dotnetzip.1.12.0.nupkg.sha512",
-    "C:\\Users\\Finlay\\.nuget\\packages\\harmonyx\\2.4.1\\harmonyx.2.4.1.nupkg.sha512",
+    "C:\\Users\\Finlay\\.nuget\\packages\\harmonyx\\2.10.1\\harmonyx.2.10.1.nupkg.sha512",
     "C:\\Users\\Finlay\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
     "C:\\Users\\Finlay\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net35\\1.0.3\\microsoft.netframework.referenceassemblies.net35.1.0.3.nupkg.sha512",
     "C:\\Users\\Finlay\\.nuget\\packages\\mono.cecil\\0.10.4\\mono.cecil.0.10.4.nupkg.sha512",
-    "C:\\Users\\Finlay\\.nuget\\packages\\monomod.runtimedetour\\21.4.2.3\\monomod.runtimedetour.21.4.2.3.nupkg.sha512",
-    "C:\\Users\\Finlay\\.nuget\\packages\\monomod.utils\\21.4.2.3\\monomod.utils.21.4.2.3.nupkg.sha512"
+    "C:\\Users\\Finlay\\.nuget\\packages\\monomod.runtimedetour\\22.3.23.4\\monomod.runtimedetour.22.3.23.4.nupkg.sha512",
+    "C:\\Users\\Finlay\\.nuget\\packages\\monomod.utils\\22.3.23.4\\monomod.utils.22.3.23.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Deli 0.3.2 depends on BepInEx.Core (>= 5.4.0) but BepInEx.Core 5.4.0 was not found. An approximate best match of BepInEx.Core 5.4.16 was resolved.",
-      "libraryId": "BepInEx.Core",
-      "targetGraphs": [
-        ".NETFramework,Version=v3.5"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package UnityEngine.Core. No packages exist with this id in source(s): nuget.org",
-      "libraryId": "UnityEngine.Core",
-      "targetGraphs": [
-        ".NETFramework,Version=v3.5"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: HarmonyX from 2.5.5 to 2.4.1. Reference the package directly from the project to select a different version. \r\n BulletGrab -> Deli 0.3.2 -> BepInEx.Core 5.4.16 -> HarmonyX (>= 2.5.5) \r\n BulletGrab -> HarmonyX (>= 2.4.1)",
-      "libraryId": "HarmonyX",
-      "targetGraphs": [
-        ".NETFramework,Version=v3.5"
-      ]
-    }
-  ]
+  "logs": []
 }
