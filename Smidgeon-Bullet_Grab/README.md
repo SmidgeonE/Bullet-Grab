@@ -18,4 +18,10 @@ Once completed, you can then use this mod.
 
 If you want me to change / add anything, then by all means contact me on discord, I'm smidgeon on the thunderstore discord.
 
+# Changes
+
+1.2.1 - Fixed issues with certain closed bolt weapons
+
+1.2.0 - Supported new weapon methods introduced in Update 105
+
 
