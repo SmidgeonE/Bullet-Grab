@@ -10,7 +10,7 @@ using Object = UnityEngine.Object;
 
 namespace BulletGrab
 {
-    [BepInPlugin("dll.smidgeon.bulletgrab", "Bullet Grab", "1.2.0")]
+    [BepInPlugin("dll.smidgeon.bulletgrab", "Bullet Grab", "1.2.1")]
     [BepInProcess("h3vr.exe")]
     public class BulletGrabMod : BaseUnityPlugin
     {
@@ -37,28 +37,31 @@ namespace BulletGrab
         private static void EjectRoundPatch(FVRFireArmRound __result, FVRFireArmChamber __instance)
         {
             if (__instance == null) return;
-            
             var weapon = __instance.Firearm;
-            FVRViveHand handDoingTheAction;
+
+            if (weapon == null) return;
 
             switch (weapon)
             {
                 case Handgun handgun:
-                    handDoingTheAction = handgun.Slide.m_hand;
-                    
-                    PlaceBulletInHand(__result, handDoingTheAction);
+                    var slide = handgun.Slide;
+                    if (slide == null) break;
+
+                    PlaceBulletInHand(__result, handgun.Slide.m_hand);
                     break;
 
                 case BoltActionRifle boltAction:
-                    handDoingTheAction = boltAction.BoltHandle.m_hand;
+                    var bolt = boltAction.BoltHandle;
+                    if (bolt == null) break;
 
-                    PlaceBulletInHand(__result, handDoingTheAction);
+                    PlaceBulletInHand(__result, boltAction.BoltHandle.m_hand);
                     break;
                 
                 case ClosedBoltWeapon closedBolt:
-                    handDoingTheAction = closedBolt.Bolt.m_hand;
-                    
-                    PlaceBulletInHand(__result, handDoingTheAction);
+                    var closedBoltBolt = closedBolt.Bolt;
+                    if (closedBoltBolt == null) break;
+
+                    PlaceBulletInHand(__result, closedBoltBolt.m_hand);
                     break;
 
                 default:
